@@ -1,40 +1,30 @@
-# Устанавливаем WinRAR через Chocolatey
-Write-Host "Установка WinRAR..."
+# РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј WinRAR С‡РµСЂРµР· Chocolatey
+Write-Host "РЈСЃС‚Р°РЅРѕРІРєР° WinRAR..."
 choco install -y winrar
 
 $temp_win = $env:TEMP
 
-# Указываем путь к папке, где будет создана новая папка
 $folderPath = $temp_win
-
-# Указываем имя и путь к новой папке
 $newFolderName = "steam_temp"
 $newFolderPath = Join-Path -Path $folderPath -ChildPath $newFolderName
-
-# Создаем новую папку
 New-Item -Path $newFolderPath -ItemType Directory -Force
 
-# Указываем URL для скачивания архива
 $downloadUrl = "https://github.com/floflo1231211/test/raw/main/steamstep.zip"
-
-# Указываем путь к месту сохранения архива
 $archivePath = Join-Path -Path $newFolderPath -ChildPath "steam.zip"
 
-# Скачиваем архив
 Invoke-WebRequest -Uri $downloadUrl -OutFile $archivePath
 
-# Проверяем наличие скачанного архива
+## РџСЂРѕРІРµСЂРєРё РЅР° РґРѕСЃС‚СѓРїРЅРѕСЃС‚СЊ С„Р°Р№Р»РѕРІ
 if (Test-Path $archivePath) {
-    # Распаковываем архив
+    # Р Р°СЃРїР°РєРѕРІС‹РІР°РµРј Р°СЂС…РёРІ
     Expand-Archive -Path $archivePath -DestinationPath $newFolderPath
 } else {
-    Write-Host "Ошибка: Не удалось скачать архив."
+    Write-Host "РћС€РёР±РєР°: РќРµ СѓРґР°Р»РѕСЃСЊ СЃРєР°С‡Р°С‚СЊ Р°СЂС…РёРІ."
 }
 
-# Проверяем наличие распакованных файлов
 if (Test-Path $newFolderPath) {
-    Write-Host "Загрузка прошла успешно."
+    Write-Host "Р—Р°РіСЂСѓР·РєР° РїСЂРѕС€Р»Р° СѓСЃРїРµС€РЅРѕ."
     cd "$($newFolderPath)/steamstep"
 } else {
-    Write-Host "Ошибка: Не удалось распаковать архив."
+    Write-Host "РћС€РёР±РєР°: РќРµ СѓРґР°Р»РѕСЃСЊ СЂР°СЃРїР°РєРѕРІР°С‚СЊ Р°СЂС…РёРІ."
 }
