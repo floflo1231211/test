@@ -1,7 +1,4 @@
 # Устанавливаем WinRAR через Chocolatey
-Write-Host "Установка WinRAR..."
-choco install winrar -y
-
 $temp_win = $env:TEMP
 
 $folderPath = $temp_win
