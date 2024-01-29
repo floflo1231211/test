@@ -16,7 +16,7 @@ if (Test-Path $archivePath) {
     # Распаковываем архив
     Expand-Archive -Path $archivePath -DestinationPath $newFolderPath
     if (Test-Path $newFolderPath) {
-        Write-Host "Загрузка прошла успешно."
+        Write-Host "Распковка прошла успешно."
     } else {
         Write-Host "Ошибка: Не удалось распаковать архив."
     }
